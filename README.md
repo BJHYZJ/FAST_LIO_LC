@@ -21,6 +21,28 @@ Therefore, this project implements the pose graph optimization with a radius-sea
 - Eigen >= 3.3.4 (default for Ubuntu 18.04)
 - GTSAM >= 4.0.0(tested on 4.0.0-alpha2)
 
+In ubuntu 20.04
+```bash
+# install GTSAM 4.0.3
+wget https://github.com/borglab/gtsam/archive/4.0.3.tar.gz
+tar -xvzf 4.0.3.tar.gz
+cd gtsam-4.0.3
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+
+# install Ceres Solver 1.14.0
+sudo apt install -y cmake libgoogle-glog-dev libgflags-dev libatlas-base-dev libsuitesparse-dev
+wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
+tar -xvzf ceres-solver-1.14.0.tar.gz
+cd ceres-solver-1.14.0
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+```
+
 ## 2. Build
 
 ```bash
@@ -28,6 +50,9 @@ cd YOUR_WORKSPACE/src
 git clone https://github.com/yanliang-wang/FAST_LIO_LC.git
 cd ..
 catkin_make
+
+# if you meet `fatal error: opencv/cv.h: No such file or directory`
+# please change #include <opencv/cv.h> to #include <opencv2/opencv.hpp>
 ```
 
 ## 3. Quick test
